@@ -11,5 +11,17 @@ public class ConverterMain {
 		Converter<String, String> newConverter = start::startsWith;
 		String convertedString = newConverter.convert("Java");
 		System.out.println(convertedString);
+
+		final int numOne = 1;
+
+		// Final local variable read from the outer scope of lambda functions
+		Converter<Integer, String> stringConverter = (from) -> String.valueOf(from + numOne);
+		System.out.println(stringConverter.convert(2));
+
+		int numTwo = 1;
+
+		// Non-final local variable being used similarly
+		stringConverter = (from) -> String.valueOf(from + numTwo);
+		System.out.println(stringConverter.convert(3));
 	}
 }
